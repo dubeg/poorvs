@@ -1,0 +1,70 @@
+/* ------------------------------------------
+   Table Of Content 
+   (aka outline)
+------------------------------------------ */
+.page-post-outline
+{
+	padding-top:1em;
+}
+
+#toc .toc-h1 ol 
+{ 
+	counter-reset: toc; 
+	margin-top:0.5em;
+}
+.toc-h1,
+.toc-h2,
+.toc-h3,
+.toc-h4,
+.toc-h5,
+.toc-h6
+{
+	color: #2E61A2;
+	margin-bottom:0.6em;
+	position:relative;
+}
+.toc-h1 { 
+	font-size:1.2em;  
+	margin-bottom: 0.5em;
+	padding-bottom: 0.5em;
+}
+li.toc-h2 { font-size:0.8em; margin-left: 1em;counter-increment: toc;}
+li.toc-h3 { font-size:0.7em; margin-left: 2em;counter-increment: toc;}
+li.toc-h4 { font-size:0.7em; margin-left: 3em;counter-increment: toc;}
+li.toc-h5 { font-size:0.7em; margin-left: 4em;counter-increment: toc;}
+li.toc-h6 { font-size:0.7em; margin-left: 5em;counter-increment: toc;}
+
+.toc-h2::before,
+.toc-h3::before,
+.toc-h4::before,
+.toc-h5::before,
+.toc-h6::before
+{
+	position: absolute;
+	transform: translateX(-125%);
+	content: counters(toc, ".") ". "; 
+	font-weight:bold;
+	opacity:0.9;
+}
+
+.toc-h2.in-view::before,
+.toc-h3.in-view::before,
+.toc-h4.in-view::before,
+.toc-h5.in-view::before,
+.toc-h6.in-view::before
+{
+	background-color: rgba(60,60,100, 0.3);
+	padding:1px 4px;
+}
+
+#toc a
+{
+	color:inherit;
+	transition:color 1s ease;
+}
+
+#toc a:active
+{
+	color:orange;
+	transition:color 0s ease;
+}

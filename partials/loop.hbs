@@ -1,0 +1,65 @@
+{{!-- 
+    Partial template: loop
+    ~~~~~~~~~~~~~~~~~~~~
+    PATH: partials/index.hbs
+
+    NOTES
+    + Inserted in index.hbs
+
+    AVAILABLE
+    + pagination
+    + [#post/post] : list of posts
+--}}
+{{#foreach posts}}
+<article class="post post-ispreview {{post_class}}">
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!-- Post Header -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <header class="post-header">
+        <h1 class="post-title">
+            <a href="{{url}}">
+                {{{title}}}
+            </a>
+        </h1>
+        {{!-- 
+            Dates
+            ~~~~~
+            Year: YY, YYYY
+            Month: MMM, MMMMM (verbose)
+                   M, Mo, MM (numeric)
+            Day: D, Do, DD (numeric)
+
+            Hours: H, HH (24); h, hh (12)
+            Minutes: m, mm
+            Seconds: s, ss
+
+            ISO: 
+                + E (day)
+                + W (week of year)
+                + GG (week year)
+                + z, zz
+        --}}
+        <time class="post-date" datetime="{{date published_at format="YYYY-MM-DD"}}">
+            Published ~ <span class="post-date-day">{{date published_at format="D MMM YYYY"}}</span>
+        </time>        
+    </header>
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!-- Post Content -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!--
+    <section class="post-summary">
+        {{excerpt paragraphs="1"}}&#8230;
+    </section>
+    -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!-- Post Footer -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <footer class="post-footer">
+        <section class="post-tags">
+            {{#foreach tags}}
+            <a href="{{url}}">#{{name}}</a>
+            {{/foreach}}
+        </section>
+    </footer>
+</article>
+{{/foreach}}

@@ -1,0 +1,44 @@
+/*
+Theme Name: poorvs
+Theme URI: 
+Author: dubeg
+Author URI:
+Description: 
+Version: 0.1
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: poorvs 
+Text Domain: poorvs
+
+This file was previously from the default WP theme.
+'This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.'
+*/
+
+body
+{
+	font-family:'Open Sans',
+				'Segoe UI', 
+				sans-serif;
+}
+
+hr, .ruler
+{
+	border:none;
+	height:2px;
+	background-color: rgb(220,220,245);
+}
+
+.container
+{
+	max-width: 1000px;
+	margin:auto;
+	padding:0 2rem;/* Padding when tight viewport  */
+}
+
+.page
+{
+	padding-top: 2rem;
+	padding-bottom: 2rem;
+}
+

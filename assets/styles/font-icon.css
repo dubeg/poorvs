@@ -1,0 +1,55 @@
+ /* ------------------------------------------ */
+ /* Icon Font */
+ /* ------------------------------------------ */
+ @font-face {
+  font-family: 'fontello';
+  src: url('fonts/iconset-01/font/fontello.eot?19069385');
+  src: url('fonts/iconset-01/font/fontello.eot?19069385#iefix') format('embedded-opentype'),
+       url('fonts/iconset-01/font/fontello.woff?19069385') format('woff'),
+       url('fonts/iconset-01/font/fontello.ttf?19069385') format('truetype'),
+       url('fonts/iconset-01/font/fontello.svg?19069385#fontello') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.menu-social a:before
+{
+  font-family: "fontello";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+ 
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+ 
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+ 
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+ 
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+ 
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+ 
+  /* Font smoothing. That was taken from TWBS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+.menu-social a[href*="github.com"]:before { content: "\e803"; }
+.menu-social.circled a[href*="github.com"]:before { content: "\e800"; }
+.menu-social a[href*="twitter.com"]:before { content: '\e801'; }
+.menu-social.circled a[href*="twitter.com"]:before { content: '\e802'; }
+.menu-social a[href*="facebook.com"]:before { content: '\e805'; }
+.menu-social.circled a[href*="facebook.com"]:before { content: '\e804'; }
+

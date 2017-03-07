@@ -1,0 +1,100 @@
+/* ------------------------------------------
+   Site Navigation:
+   Contains links/menu on every page.
+------------------------------------------ */
+.navigation
+{
+	border-left:2px solid white;
+	margin-left: 1rem;
+	padding-left:1rem;
+}
+.navigation
+{
+    display:flex;
+    flex-direction: column no-wrap;
+}
+.navigation a
+{
+	margin-right:0.4rem;
+	font-size:0.9rem;
+	-font-weight:bold;
+	text-transform: capitalize;
+
+	padding:0.2rem 0.6rem;
+	border-radius:0.2rem;
+	transition: all 0.2s ease;
+}
+.navigation a:nth-child(even)
+{
+	border-left-width: 0px;
+	border-right-width: 0px;
+}
+.navigation a.current
+{
+	background-color: rgba(255,255,255,0.2);
+}
+.navigation a:hover
+{
+	background-color: rgba(255,255,255,0.2);
+	color:white;
+}
+.header-social
+{
+	margin-left:auto;
+}
+.menu-social li
+{
+	display:inline-block;
+}
+.menu-social a
+{
+	position:relative;
+}
+.navigation
+{
+	border-left:2px solid white;
+	margin-left: 1rem;
+	padding-left:1rem;
+}
+.navigation
+{
+    display:flex;
+    flex-direction: column no-wrap;
+}
+.navigation a
+{
+	margin-right:0.4rem;
+	font-size:0.9rem;
+	-font-weight:bold;
+	text-transform: capitalize;
+
+	padding:0.2rem 0.6rem;
+	border-radius:0.2rem;
+	transition: all 0.2s ease;
+}
+.navigation a:nth-child(even)
+{
+	border-left-width: 0px;
+	border-right-width: 0px;
+}
+.navigation a.current
+{
+	background-color: rgba(255,255,255,0.2);
+}
+.navigation a:hover
+{
+	background-color: rgba(255,255,255,0.2);
+	color:white;
+}
+.header-social
+{
+	margin-left:auto;
+}
+.menu-social li
+{
+	display:inline-block;
+}
+.menu-social a
+{
+	position:relative;
+}

@@ -1,0 +1,50 @@
+@media (max-width: 1000px)
+{
+	.page-post-toc
+	{
+		display:none;
+		visibility:none;
+	}
+	.post-full
+	{
+		width:80%;
+		margin:auto;
+	}
+	.page-post-nav
+	{
+		width:80%;
+		margin-left:auto;
+		margin-right:auto;
+	}
+}
+@media (max-width: 600px)
+{
+	.post-full, .page-post-nav
+	{
+		width:90%;
+		margin-left:auto;
+		margin-right:auto;
+	}
+}
+
+@media (max-width: 400px)
+{
+	.site-header-layout
+	{
+		display:block;
+		text-align:center;
+	}
+	.navigation
+	{
+		border:none;
+		display:block;
+		margin:0;
+		padding:0;
+	}
+	.page-post-body
+	{
+		width:100%;
+		margin-left:0;
+		margin-right:0;
+	}	
+}

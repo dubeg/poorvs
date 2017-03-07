@@ -1,0 +1,29 @@
+/* ------------------------------------------
+   Post page:
+   Page of a single post.
+------------------------------------------ */
+.page-post-layout
+{
+	display:flex;
+}
+.page-post-nav
+{
+	margin-bottom:1rem;
+	margin-left:auto;
+	margin-right:auto;	
+}
+.page-post-toc
+{
+	width:20%;
+	order:2;
+	opacity:0;
+}
+.page-post-toc.visible
+{
+	opacity:1;
+}
+.page-post-body
+{
+	margin-left:0%;
+	margin-right:4%;
+}

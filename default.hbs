@@ -1,0 +1,150 @@
+{{!-- 
+    default.hbs
+    ~~~~~~~~~~~~~~
+    PATH: /default.hbs
+    
+    Note: once upon a time, I wrote here the tag
+    used to extend this layout template. However, the parent/child template
+    feature is added to handlebars via a third-paty extension that doesn't care if the tag
+    is in a comment or not, and so it caused unwanted recursivity that resulted 
+    in a memory allocation type crash, lel.
+
+    NOTES
+    + Default layout template.
+    + To extend this, use .. in child template.
+    + "body" tag is basically a placeholder for child templates.
+    + index.hbs, page.hbs are typically children of this template.
+
+    AVAILABLE
+    + blog
+    + asset : required
+    + navigation
+    + body_class : required
+    + ghost_head : required
+    + ghost_footer : required
+
+    + meta_title : title of blog, or post (on post.hbs)
+    + meta_description : desc. of blog, or nothing (on post.hbs).
+--}}
+<!DOCTYPE html>
+<html>
+<head>
+    {{! ~~~~~~~~~~~~~~~~~~~~~~~~~~ }}
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    {{! ~~~~~~~~~~~~~~~~~~~~~~~~~~ }}
+    <title>{{meta_title}}</title>
+    <meta name="description" content="{{meta_description}}" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="{{asset "favicon.ico"}}">
+    {{! ~~~~~~~~~~~~~~~~~~~~~~~~~~ }}
+    <link rel="stylesheet" type="text/css" href="{{asset "styles/site-reset.css"}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset "styles/site-main.css"}}" />
+
+    <link rel="stylesheet" type="text/css" href="{{asset "styles/site-header.css"}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset "styles/site-nav.css"}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset "styles/site-trail.css"}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset "styles/site-footer.css"}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset "styles/site-media.css"}}" />
+
+    <link rel="stylesheet" type="text/css" href="{{asset "styles/index.css"}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset "styles/index-pagination.css"}}" />
+
+    <link rel="stylesheet" type="text/css" href="{{asset "styles/post.css"}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset "styles/post-page.css"}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset "styles/post-toc.css"}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset "styles/post-headings-number.css"}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset "styles/post-headings-shake.css"}}" />
+
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+    <link rel="stylesheet" type="text/css" href="{{asset "external/prism/prism.css"}}" />
+    {{! ~~~~~~~~~~~~~~~~~~~~~~~~~~ }}
+    {{ghost_head}}
+</head>
+<body class="{{body_class}}">
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!-- Site Header -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <header id="site-header" class="site-header">
+    <div class="container site-header-layout">
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <!-- Title / Logo -->
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            {{#if @blog.logo}}
+            <a href="{{@blog.url}}">
+                <img class="site-header-logo" src="{{@blog.logo}}" alt="Blog logo">
+            </a>
+            {{/if}}
+            <a href="{{@blog.url}}" class="site-header-title">
+                {{@blog.title}}
+            </a>
+
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <!-- Navigation -->
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            {{!-- Class: header-nav --}}
+            {{navigation}}
+
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <!-- Social -->
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <aside class="site-header-social">
+            </aside>
+        </div>       
+    </header>
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!-- Trail -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <section id="site-trail" class="site-trail">
+        <div class="container site-trail-layout">
+            <div id="site-trail-placeholder" class="site-trail-placeholder">
+                &nbsp;
+            </div>
+        </div>
+    </section>   
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!-- Site Content -->   
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    {{{body}}}
+    
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!-- Site Footer -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <footer class="site-footer">
+    <div class="container">
+        <hr/>
+        <!-- ........... -->
+        <!-- Copyright -->
+        <!-- ........... -->
+        <section class="site-footer-copyright">
+            <a href="{{@blog.url}}">{{@blog.title}}</a> 
+            &copy; 
+            {{date format="YYYY"}}
+        </section>
+        <!-- ........... -->
+        <!-- PoweredBy -->
+        <!-- ........... -->
+        <section class="site-footer-ghost">
+            Using <a href="https://ghost.org">Ghost</a>.
+        </section>
+    </div>        
+    </footer>
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!-- Scripts -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ --> 
+    {{!-- <script defer src="https://code.jquery.com/jquery-1.11.3.min.js"></script> --}}
+    {{ghost_foot}}
+    <script src="{{asset "external/prism/prism.js"}}"></script>
+    <script src="{{asset "scripts/toc-builder.js"}}"></script>
+    <script src="{{asset "scripts/toc-viewport.js"}}"></script>
+    <script src="{{asset "scripts/toc-scroll.js"}}"></script>
+    <script src="{{asset "scripts/PageNumber.js"}}"></script>
+    <!-- <script src="{{asset "scripts/breadcrumbs.js"}}"></script> -->
+    <script src="{{asset "scripts/main.js"}}"></script>
+    {{!-- <script src="http://localhost:35729/livereload.js"></script> --}}
+</body>
+</html>

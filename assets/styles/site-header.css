@@ -1,0 +1,24 @@
+/* ------------------------------------------
+   Site Header:
+   Header at the top of every page.
+------------------------------------------ */
+.site-header
+{
+	background-color: #2E61A2;
+	color:white;
+	padding:1rem 0;
+}
+.site-header-layout
+{
+	display:flex;
+	align-items: center;
+}
+.site-header-logo
+{
+	width:4rem;
+}
+.site-header-title
+{
+	font-size:3rem;
+	font-weight: 200;
+}

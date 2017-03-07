@@ -1,0 +1,59 @@
+{{!< default}}
+{{!-- 
+    Page template: post
+    ~~~~~~~~~~~~~~~~~~~~
+    PATH: /post.hbs
+    EXTENDS: default.hbs
+
+    NOTES
+    + Gets inserted into the {body} of default.hbs. 
+
+    AVAILABLE
+--}}
+<main class="page page-post container">
+    <nav id="post-nav" class="page-post-nav">
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <!-- Page Nav -->
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <a id="btnGoBack" class="button" href="{{@blog.url}}">
+            &larr; Go to Index
+        </a>
+    </nav>
+    <div class="page-post-layout">
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <!-- Outline -->
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <section id="toc" class="page-post-toc">
+        </section>
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <!-- Page -->
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        {{#post}}
+        <article id="post" class="page-post-body post post-full {{post_class}}">
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <!-- Page Header -->
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <header class="post-header">
+            	<h1 id="title" class="post-title">
+            		{{title}}
+            	</h1>
+                <time class="post-date" datetime="{{date published_at format="YYYY-MM-DD"}}">
+                    <span class="post-date-day">{{date published_at format="D MMMM YYYY"}}</span>
+                </time>  
+            </header>
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <!-- Page Content -->
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <div class="post-content">
+            	{{content}}
+            </div>
+
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <!-- Page Footer -->
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <footer class="post-footer">
+            </footer>
+        </article>
+        {{/post}}
+    </div>
+</main>

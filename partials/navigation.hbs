@@ -1,0 +1,41 @@
+{{!-- 
+    navigation.hbs
+    ~~~~~~~~~~~~~~
+    PATH: /partials/navigation.hbs
+    INCLUDE:
+
+    NOTES
+    + Override the default nav template, which is boring.
+    + Must reside in the partials/ directory.
+    + Doesnt output anything if there are NO nav. items set in the Admin panel.
+    + Can be checked with the global "blog.navigation" property.
+
+    HELPERS
+    #foreach navigation
+    /foreach
+
+    ATTRIBUTES (available inside the navigation helper) 
+    + label
+    + url 
+    + current : boolean
+    + slug : slugified name of the page.
+
+--}}
+<nav class="navigation">
+
+    <!-- User's -->    
+    {{#foreach navigation}}
+    <a  href="{{url absolute="true"}}" 
+        class="nav-{{slug}}{{#if current}} current{{/if}}">
+        {{label}}
+    </a>
+    {{/foreach}}
+
+    <!-- RSS -->
+    <!-- 
+    <a class="subscribe-button icon-feed" href="{{@blog.url}}/rss/">rss</a> 
+    -->
+    
+    <!-- Admin -->
+    <a href="{{@blog.url}}/ghost/">admin</a>
+</nav>

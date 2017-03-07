@@ -1,0 +1,31 @@
+/* ------------------------------------------
+   Site Trail:
+   Contains breadcrumb trail put on every page.
+------------------------------------------ */
+.site-trail
+{
+    background-color:#E7E6F3;
+	background-color:#FFDC5C;
+
+	color:rgb(80,80,90);
+	position: relative;
+	padding:0rem 0;
+	font-size:0.8rem;
+}
+.site-trail-placeholder
+{
+	position:relative;
+	word-spacing: 0.2rem;
+	opacity: 0;
+}
+.site-trail-placeholder.visible
+{
+	transition: all 0.5s ease;
+	opacity:1;
+}
+
+.site-trail a
+{
+	text-transform: capitalize;
+	font-weight: bold;
+}

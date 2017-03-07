@@ -1,0 +1,33 @@
+/* ------------------------------------------
+   Index:
+   Styles of the index page.
+------------------------------------------ */
+.page-index-layout
+{
+	max-width: 50rem;
+	padding-left: 1em;
+	padding-right: 1em;
+}
+.page-index-header
+{
+	display:flex;
+	align-items: baseline;
+	flex-direction: row;
+    margin-bottom:1.5rem;
+	color:rgb(60,60,60);
+}
+.page-index-title
+{
+	font-size:2.8rem;
+}
+.page-index-pagenbr
+{
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity 0.2s ease-in;
+}
+.page-index-pagenbr.visible
+{
+	visibility: visible;
+	opacity: 1;
+}

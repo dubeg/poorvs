@@ -1,0 +1,26 @@
+<nav class="posts-pagination">
+    {{#if prev}}
+    <a class="button newer-posts no-border-right" href="{{page_url prev}}">
+    	Newer Posts
+	</a>
+    {{else}}
+    <span class="button disabled">
+        Newer Posts
+    </span>
+    {{/if}}
+    
+    <span class="button total">
+    	Page {{page}}&nbsp;of&nbsp;{{pages}}
+	</span>
+    {{body}}
+    
+    {{#if next}}
+        <a class="button older-posts no-border-left" href="{{page_url next}}">
+        	Older Posts
+    	</a>
+    {{else}}
+    <span class="button disabled">
+        Older Posts
+    </span>        
+    {{/if}}	
+</nav>

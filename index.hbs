@@ -1,0 +1,42 @@
+{{!< default}}
+{{!-- 
+    Page template: index
+    ~~~~~~~~~~~~~~~~~~~~
+    PATH: /index.hbs
+    EXTENDS: default.hbs
+
+    NOTES
+    + Gets inserted into the {body} of default.hbs. 
+
+    AVAILABLE
+    + blog
+    + navigation
+--}}
+<main class="page page-index container">
+<div class="page-index-layout">
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!-- Page Header -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <header class="page-index-header">
+    	<h1 class="page-index-title">
+    		Index
+        <span id="lblHeaderPageNbr" class="page-index-pagenbr">
+            [ {{pagination.page}} ]
+        </span>
+    	</h1>
+        <input type="hidden" id="pageNbr" value="{{pagination.page}}"/>
+    </header>
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!-- Page Content -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <div class="posts">
+    	{{> "loop"}}
+    </div>
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!-- Page Footer -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <footer class="page-footer">
+    	{{pagination}}
+    </footer>
+</div>
+</main>

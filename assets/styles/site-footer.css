@@ -1,0 +1,27 @@
+/* ------------------------------------------
+   Site Footer:
+   Footer at the bottom of every page.
+------------------------------------------ */
+.site-footer
+{
+    background-color:white;
+	color:#2E61A2;
+	padding-bottom:1rem;
+}
+.site-footer .container
+{
+	display:flex;
+	flex-flow:row wrap;
+}
+.site-footer a
+{
+	font-weight: bold;
+}
+.site-footer hr
+{
+	flex-basis:100%;
+}
+.site-footer-ghost
+{
+	margin-left:auto;
+}

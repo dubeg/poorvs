@@ -1,0 +1,59 @@
+/* ------------------------------------------
+   Headings - shake animation
+------------------------------------------ */
+
+.post-full    h1:target::before,
+.post-content h1:target::before, 
+.post-content h2:target::before,
+.post-content h3:target::before,
+.post-content h4:target::before,
+.post-content h5:target::before,
+.post-content h6:target::before
+{
+	animation: fadeColor 5s ease
+}
+@keyframes fadeColor
+{
+	0%
+	{
+		color:orange
+	}
+	100%
+	{
+	}
+}
+
+.post-full h1:target,
+.post-content h1:target, 
+.post-content h2:target,
+.post-content h3:target,
+.post-content h4:target,
+.post-content h5:target,
+.post-content h6:target
+{
+	animation-duration: 0.82s;
+	animation-timing-function: cubic-bezier(.36,.07,.19,.97);
+	animation: shake 0.82s cubic-bezier(.36,.07,.19,.97);
+
+	transform: translate3d(0, 0, 0);
+	backface-visibility: hidden;
+	perspective: 1000px;
+}
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}

@@ -1,0 +1,244 @@
+/* ------------------------------------------ */
+.post
+{
+	padding-bottom:2em;
+}
+/* ------------------------------------------ */
+.post-header
+{
+	padding-bottom: 1rem;
+	border-bottom: 1px dotted rgb(200,200,200);	
+}
+.post-ispreview 
+.post-header
+{
+	padding-bottom: 0.5rem;
+	border-bottom: none;
+}
+/* ------------------------------------------ */
+.page-post 
+.post-footer
+{
+	content:"";
+	height: 50vh;
+	width:100%;
+}
+/* ------------------------------------------ */
+.post-title
+{
+	font-size:2.8rem;
+}
+.post-title a
+{
+	border-bottom: 2px solid transparent;
+	transition: all 0.2s ease;
+}
+.post-title:hover a,
+.post-title:focus a
+{
+	border-color:#2E61A2;
+}
+
+.post-ispreview .post-title
+{
+	font-size:2rem;
+	color:#2E61A2;
+}
+/* ------------------------------------------ */
+.post-date
+{
+	opacity:0.8;
+    font-size:0.8rem;
+	margin-bottom:0.4rem;
+}
+.post-date :nth-child(2)
+{
+	margin-left:0.5em;
+    font-size:0.8em;
+}
+.post-ispreview .post-date
+{
+	font-size:0.8rem;
+	color:rgb(130,130,130);
+}
+/* ------------------------------------------ */
+.post-content
+{
+	font-size:1rem;
+	max-width: 45rem;
+	margin-top:2rem;
+	color:rgb(70,70,70);
+}
+/* ------------------------------------------ */
+/* Important, otherwise post content (as a flex item) wont shrink */
+.post-content img 
+{
+	max-width:100%;
+}
+
+/* ------------------------------------------ */
+.post-content h1,
+.post-content h2,
+.post-content h3,
+.post-content h4,
+.post-content h5,
+.post-content h6
+{
+	position:relative;
+	margin-top:1.5rem;
+	margin-bottom:0.8rem;
+	color:rgb(30,30,50);
+}
+
+.post-content h1 { font-size:2.5rem; }
+.post-content h2 { font-size:2.2rem; }
+.post-content h3 { font-size:1.8rem; }
+.post-content h4 { font-size:1.5rem; }
+.post-content h5 { font-size:1.2rem; }
+.post-content h6 { font-size:1.0rem; }
+/* ------------------------------------------ */
+.post-content > p
+{
+	/* Taken from Hanselman's blog */
+	font-size:95%;
+	color: #333;
+	line-height:1.4em;
+	margin-top:1.5em;
+	margin-bottom:1.5em;
+}
+/* ------------------------------------------ */
+.post-content > ul,
+.post-content > ol
+{
+	margin-top:1em;
+	margin-bottom:2em;
+}
+
+.post-content ul,
+.post-content ol
+{
+	font-size:95%;
+}
+
+.post-content ul {list-style: disc;}
+.post-content ul ul {list-style: circle;}
+.post-content ul ul ul {list-style: disc;}
+.post-content ul ul {list-style: circle;}
+.post-content ul ul ul ul {list-style: square;}
+.post-content ol {list-style: decimal;}
+
+.post-content ul p ,
+.post-content ol p
+{
+	margin:0;
+} 
+
+.post-content ul li ,
+.post-content ol li 
+{
+	margin-top:0.5em;
+	margin-bottom:0.5em;
+	margin-right:0;
+	margin-left: 1.7em;
+}
+/* ------------------------------------------ */
+.post-content em
+{
+	font-style:italic;
+}
+
+.post-content strong
+{
+	font-weight:bold;
+}
+
+.post-content sup
+{
+	vertical-align: super;
+    font-size: smaller;
+}
+
+.post-content a
+{
+	color:#2E61A2;
+	font-weight: bold;
+}
+
+.post-content blockquote
+{
+	border-left:0.2em solid orange;
+	padding:0.2em;
+	padding-left:1em;
+	margin:1em 0em;
+}
+
+.post-content pre
+{
+	overflow-x: scroll;
+	background-color: #f5f2f0;
+	padding:1rem;
+}
+.post-content code
+{
+	font-family:"Consolas";
+	display:inline-block;
+	padding:0.2rem 0.4rem;
+	margin:0.0rem;
+	font-size:0.8rem;
+	background-color: #f5f2f0;
+	color:#00978e;/* cyan:00978e oj:e66e33 green:309c40 taken from dev.moz*/
+	border-radius: 5px;
+}
+
+.post-summary
+{
+	color:rgb(70,70,70);
+}
+
+.post-summary-more
+{
+	font-weight: bold;
+	color:#2E61A2;
+}
+
+
+.post-footer, 
+.post-footer *
+{
+    margin:0.4rem 0rem;
+    margin-right: 0.2rem;
+}
+
+.post-tags a
+{
+	display:inline-block;
+	padding:0.2em 0.4em;
+
+	font-size:0.8rem;
+	background-color:#FFDC5C;
+	color:rgb(70,70,70);
+}
+
+.post-actions a
+{
+	border:1px solid #2E61A2;
+	color:#2E61A2;
+	
+	font-size:0.7rem;
+
+	padding:0.2em 0.8em;
+	text-align: center;
+	outline:none;
+}
+
+.post-actions a:hover,
+.post-actions a:focus
+{
+	background-color: #2E61A2;
+	color:white;
+}
+
+.post-actions a:active		
+{
+	opacity: 0.8;
+}
