@@ -119,7 +119,8 @@ var tocViewport = {
 		}
 		return sections;
     },
-	getCoords: function(elem) { // crossbrowser version
+	getCoords: function(elem) 
+	{
 		let box = elem.getBoundingClientRect();
 
 		let body = document.body;
@@ -149,11 +150,19 @@ var tocViewport = {
 			let section = sections[i];
 			let isInView = false;
 
-			if ((viewportTop >= section.top && viewportTop <= section.bottom) ||
-				(viewportBottom >= section.top && viewportBottom <= section.bottom) ||
-				(section.top >= viewportTop && section.bottom <= viewportBottom)) 
+			// Case A: section is entirely within the viewport.
+			// Case B: section is extending past viewportBottom, and sectionTop is in the viewport.
+			// Case C: section is extending past viewportTop, and sectionBottom is in the viewport. 
+			// Case D: section is extending past viewportTop and viewportBottom.
+
+			// Solution 2 (slightly better)
+			// 1st condition takes care of case A & B.
+			if (viewportTop <= section.top && viewportBottom >= section.top)
 				isInView = true;
-			
+			// 2nd condition takes care of case C & D.
+			if (viewportTop >= section.top && viewportTop <= section.bottom)
+				isInView = true;
+
 			this.log(
 				"Visible:" + isInView 
 				+ " | " + section.index 
