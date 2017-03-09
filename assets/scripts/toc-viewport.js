@@ -59,7 +59,7 @@ var tocViewport = {
 	onTick: function()
 	{
 		let sectionsInViewport = this.updateSectionsInViewport(this._sections);
-		this.updateViewportIndicator(sectionsInViewport);
+		this.updateViewportIndicators(sectionsInViewport);
 		// --------------------
 		this._isTicking = false;
 	},
@@ -198,7 +198,7 @@ var tocViewport = {
 		}
 	},
 	// =================================================
-	updateViewportIndicator: function(sectionsInViewport)
+	updateViewportIndicators: function(sectionsInViewport)
 	{
 		let items = this._items;
 		let list = this._lists[0];
@@ -239,7 +239,6 @@ var tocViewport = {
 	{
 		let itemInfos = [];
 		let items = list.getElementsByTagName("li");
-
 		for(let i = 0; i < items.length; ++i)
 		{
 			let item = items[i];
@@ -254,7 +253,6 @@ var tocViewport = {
 				height: height,
 				top: top
 			});
-			// console.log(top);
 		}
 		return itemInfos;
 	}
