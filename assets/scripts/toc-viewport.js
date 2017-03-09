@@ -228,7 +228,7 @@ var tocViewport = {
 				sectionsInViewport.push(section);
 				//console.log(section.index + " " + section.top + "-" + section.bottom + " " + section.sectionName);
 			}
-			//this.setClassOnItemsInView(section, isInView);
+			this.setClassOnItemsInView(section, isInView);
 		}
 		return sectionsInViewport;
 	},
