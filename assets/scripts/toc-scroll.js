@@ -19,7 +19,7 @@ var tocScroll = {
 	_handlerOnResize : null,
 	_topOffset : 16, // in pixels
 
-	Init: function(elementId)
+	Init: function(elementClass)
 	{
 		// Animating any property on a relatively postionned element wont be smooth.
 		// I tried relative/top, relative/translate, both were jerky.
@@ -28,16 +28,17 @@ var tocScroll = {
 		this._handlerOnScroll = this.onScroll.bind(this);
 		this._handlerOnResize = this.onResize.bind(this);
 
-		this._element = document.getElementById(elementId);
-		if (this._element == null)
+		let elements = document.getElementsByClassName(elementClass);
+		if (elements.length < 1)
 			return false;
 
+		this._element = elements.item(0);
 		this._elementParent = this._element.parentElement;
 		if (this._elementParent == null)
 			return false;
 
 		this._fixedElement = this._element.cloneNode(true);
-		this._fixedElement.id += "-stickied";
+		this._fixedElement.className += " stickied";
 		this._fixedElement.style.visibility = "hidden";
 		this._fixedElement.style.position = "fixed";
 		this._fixedElement.style.top = this._topOffset + "px";

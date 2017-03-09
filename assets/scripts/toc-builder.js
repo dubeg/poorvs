@@ -17,16 +17,16 @@ var tocBuilder = {
 	_scrollY : null,
 	_activeHeading : null,
 	_activeClassName : null,
-	_tocListId : "toc-container",
+	_tocListClass : "toc-container",
 	_tocListTag: "ol",
 
-	Init : function(sourceElementID, destinationElementID, headingSelectors, tocListId)
+	Init : function(sourceElementID, destinationElementID, headingSelectors, tocListClass)
 	{
 		if (headingSelectors !== null && typeof headingSelectors === "string")
 			this._headingSelectors = headingSelectors;
 
-		if (tocListId !== null && typeof tocListId === "string")
-			this._tocListId = tocListId;
+		if (tocListClass !== null && typeof tocListClass === "string")
+			this._tocListClass = tocListClass;
 
 		this._sourceElement = document.getElementById(sourceElementID);
 		this._destinationElement = document.getElementById(destinationElementID);
@@ -57,7 +57,7 @@ var tocBuilder = {
 			// Create list
 			let listTagName = this._tocListTag;
 			let rootNode = document.createElement(listTagName);
-			rootNode.id = this._tocListId;
+			rootNode.setAttribute("class", this._tocListClass);
 			// Init 
 			let currentParent = rootNode;
 			let currentNode = null;

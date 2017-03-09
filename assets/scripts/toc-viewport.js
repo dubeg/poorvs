@@ -5,11 +5,19 @@ var tocViewport = {
 	_isTicking : false,
 	_isHooked : false,
 	_sections : null,
+	_lists : null,
+	_indicators : null,
+	_items : null,
 
 	Init: function()
 	{
+		this._lists = document.getElementsByClassName("toc-list");
+		if (this._lists.length < 1)
+			return false;
+		this.insertIndicators(this._lists);
+		this._items = this.getItems(this._lists[0]);
         this._sections = this.getSections();
-		this.setInView(this._sections);
+		this.onTick();
 		this._handlerOnScroll = this.onScroll.bind(this);
 		this._handlerOnResize = this.onResize.bind(this);
 		return true;
@@ -50,10 +58,9 @@ var tocViewport = {
 	},
 	onTick: function()
 	{
-        // Fn body here.
-        // ...
-        // --------------------
-		this.setInView(this._sections);
+		let sectionsInViewport = this.updateSectionsInViewport(this._sections);
+		this.updateViewportIndicator(sectionsInViewport);
+		// --------------------
 		this._isTicking = false;
 	},
     // =================================================
@@ -114,7 +121,12 @@ var tocViewport = {
 			// Last case
 			if(sections.length > 1)
 			{
-				sections.push({ sectionName: sectionName, top: top, bottom: bottom, index: index });
+				sections.push({ 
+					sectionName: sectionName, 
+					top: top, 
+					bottom: bottom, 
+					index: index
+				});
 			}
 		}
 		return sections;
@@ -137,13 +149,16 @@ var tocViewport = {
 			bottom: Math.round(bottom) 
 		};
 	},
-	setInView: function(sections)
+	// =================================================
+	updateSectionsInViewport: function(sections)
 	{
+		let sectionsInViewport = [];
 		let viewportTop = window.scrollY;
 		let viewportBottom = window.innerHeight + viewportTop;
 
-		this.log("ViewportTop: " + viewportTop);
-		this.log("ViewportBot: " + viewportBottom);
+		//console.clear();
+		//console.log("ViewportTop: " + viewportTop);
+		//console.log("ViewportBot: " + viewportBottom);
 
 		for(let i = 0; i < sections.length; ++i)
 		{
@@ -157,30 +172,90 @@ var tocViewport = {
 
 			// Solution 2 (slightly better)
 			// 1st condition takes care of case A & B.
-			if (viewportTop <= section.top && viewportBottom >= section.top)
-				isInView = true;
 			// 2nd condition takes care of case C & D.
-			if (viewportTop >= section.top && viewportTop <= section.bottom)
+			if ((viewportTop <= section.top && viewportBottom >= section.top) ||
+			    (viewportTop >= section.top && viewportTop <= section.bottom))
+			{
 				isInView = true;
-
-			this.log(
-				"Visible:" + isInView 
-				+ " | " + section.index 
-				+ " " + section.top + "-" + section.bottom);
-
-			let className = "toc-item-" + section.index;
-			let elements = document.getElementsByClassName(className)
-			if(elements.length > 0) {
-				for(let j = 0; j < elements.length; ++j)
-					if (isInView)
-						elements[j].classList.add("in-view");
-					else 
-						elements[j].classList.remove("in-view");
+				sectionsInViewport.push(section);
+				//console.log(section.index + " " + section.top + "-" + section.bottom + " " + section.sectionName);
 			}
+			//this.setItemClass(section, isInView);
+		}
+		return sectionsInViewport;
+	},
+	setItemClass: function(section, isInView)
+	{
+		let className = "toc-item-" + section.index;
+		let elements = document.getElementsByClassName(className)
+		if(elements.length > 0) 
+		{
+			for(let j = 0; j < elements.length; ++j)
+				if (isInView)
+					elements[j].classList.add("in-view");
+				else 
+					elements[j].classList.remove("in-view");
 		}
 	},
-	log: function(msg)
+	// =================================================
+	updateViewportIndicator: function(sectionsInViewport)
 	{
-		//console.log(msg);
+		let items = this._items;
+		let list = this._lists[0];
+		let indicators = document.getElementsByClassName("toc-viewport");
+
+		// Get infos
+		// ----------
+		let firstItem = items[sectionsInViewport[0].index];
+		let lastItem = items[sectionsInViewport[sectionsInViewport.length - 1].index];
+		
+		let top = firstItem.top;
+		let height = lastItem.top + lastItem.height - top;
+
+		// Update indicators
+		// -----------------
+		for(let i = 0; i < indicators.length; ++i)
+		{
+			let indicator = indicators[i];
+			indicator.style.height = height + "px";
+			indicator.style.top = top + "px";
+		}
+	},
+	// =================================================
+	insertIndicators: function(lists)
+	{
+		let indicator = document.createElement("div");
+		indicator.className = "toc-viewport";
+
+		for( let i = 0; i < lists.length; ++i)
+		{
+			let list = lists[i];
+			let indicatorClone = indicator.cloneNode(true);
+			list.appendChild(indicatorClone);
+		}
+	},
+	// =================================================
+	getItems: function(list)
+	{
+		let itemInfos = [];
+		let items = list.getElementsByTagName("li");
+
+		for(let i = 0; i < items.length; ++i)
+		{
+			let item = items[i];
+			let styles = window.getComputedStyle(item, null);
+			let lineHeight = styles.getPropertyValue("line-height");
+
+			let top = item.offsetTop;
+			let height = Number.parseInt(lineHeight.slice(0, -2));
+
+			itemInfos.push({
+				class: item.className,
+				height: height,
+				top: top
+			});
+			// console.log(top);
+		}
+		return itemInfos;
 	}
 }

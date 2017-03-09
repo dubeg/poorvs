@@ -32,10 +32,10 @@ function mainInit()
 	let tocContainerElementId = "toc";
 	let postNavElementId = "post-nav";
 	let headingSelectors = "h1,h2,h3,h4,h5,h6";
-	let tocListId = "toc-list";
+	let tocListClassName = "toc-list";
 	let tocVisibleClassName = "visible";
 
-	if (tocBuilder.Init(headingsContainerElementId, tocContainerElementId, headingSelectors, tocListId))
+	if (tocBuilder.Init(headingsContainerElementId, tocContainerElementId, headingSelectors, tocListClassName))
 	{
 		if(tocBuilder.InsertTOC()) {
 			// set toc visible
@@ -43,7 +43,7 @@ function mainInit()
 			document.getElementById(postNavElementId).classList.add(tocVisibleClassName);
 			document.getElementById(tocContainerElementId).classList.add(tocVisibleClassName);
 
-			if (tocScroll.Init(tocListId))
+			if (tocScroll.Init(tocListClassName))
 				tocScroll.Start();
 
 			if (tocViewport.Init())
