@@ -9,6 +9,7 @@
 // related to the sections visible in the viewport.
 // ==================================
 var tocViewport = {
+	_metadataCalculated : false,
 	_isTicking : false,
 	_isHooked : false,
 	_sections : null,
@@ -22,14 +23,13 @@ var tocViewport = {
 		if (tocParent == null) return false;
 		this._tocList = tocParent.querySelector(".toc-list:not(.clone)");
 		if (this._tocList == null) return false;
-
 		this._indicator = this.insertIndicator(this._tocList);
-		this._items = this.getItems(this._tocList);
-        this._sections = this.getSections();
+
+		this.updateMetadata();
 
 		// Update on page load, before any
 		// scrolling/resizing can occur.
-		this.onTick();
+		this.requestTick();
 		this._handlerOnScroll = this.onScroll.bind(this);
 		this._handlerOnResize = this.onResize.bind(this);
 		return true;
@@ -62,6 +62,7 @@ var tocViewport = {
 	},
 	requestTick: function()
 	{
+		if (this._tocList.clientWidth <= 0) return;
 		if (this._isTicking == false)
 		{
 			this._isTicking = true;
@@ -70,8 +71,11 @@ var tocViewport = {
 	},
 	onTick: function()
 	{
-		let sections = this.getSectionsInViewport(this._sections);
-		this.updateViewportIndicator(sections);
+		if(this._metadataCalculated || this.updateMetadata())
+		{
+			let sections = this.getSectionsInViewport(this._sections);
+			this.updateViewportIndicator(sections);
+		}
 		// --------------------
 		this._isTicking = false;
 	},
@@ -262,7 +266,7 @@ var tocViewport = {
 		let indicator = this._indicator;
 		let items = this._items;
 		let indicators = document.getElementsByClassName("toc-viewport");
-
+		
 		// Get infos
 		// ----------
 		let firstItem = items[sectionsInViewport[0].index];
@@ -270,6 +274,8 @@ var tocViewport = {
 		
 		let top = firstItem.top;
 		let height = lastItem.top + lastItem.height - top;
+
+		//console.log(firstItem);
 
 		// Update indicators
 		// -----------------
@@ -287,5 +293,12 @@ var tocViewport = {
 		indicator.className = "toc-viewport";
 		list.appendChild(indicator);
 		return indicator;
+	},
+	updateMetadata: function()
+	{
+		if(this._tocList.clientHeight <= 0) return false;
+		this._items = this.getItems(this._tocList);
+        this._sections = this.getSections();	
+		return this._metadataCalculated = true;
 	}
 }
