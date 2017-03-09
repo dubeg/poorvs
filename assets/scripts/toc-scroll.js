@@ -10,7 +10,6 @@
 // but that won't happen until I need it for something else.
 // ==================================
 var tocScroll = {
-	_fixedElement : null, // 
 	_element : null, // static element
 	_elementParent : null, // static node containing element.
 	_isTicking : false,
@@ -21,9 +20,8 @@ var tocScroll = {
 
 	Init: function(elementClass)
 	{
-		// Animating any property on a relatively postionned element wont be smooth.
-		// I tried relative/top, relative/translate, both were jerky.
-		// Therefore, lets create a clone of the element and fix it on the viewport.
+		// Animating any property on a relatively postionned element isnt smooth.
+		// Instead, lets put a hidden clone of the element so that the container keeps its dimensions, and fix the list on the viewport when the viewport is scrolled below the list's static position.
 
 		this._handlerOnScroll = this.onScroll.bind(this);
 		this._handlerOnResize = this.onResize.bind(this);
@@ -37,12 +35,10 @@ var tocScroll = {
 		if (this._elementParent == null)
 			return false;
 
-		this._fixedElement = this._element.cloneNode(true);
-		this._fixedElement.className += " stickied";
-		this._fixedElement.style.visibility = "hidden";
-		this._fixedElement.style.position = "fixed";
-		this._fixedElement.style.top = this._topOffset + "px";
-		this._elementParent.appendChild(this._fixedElement);
+		let cloneElement = this._element.cloneNode(true);
+		cloneElement.className += " clone";
+		cloneElement.style.visibility = "hidden";
+		this._elementParent.appendChild(cloneElement);
 
 		return true;
 	},
@@ -50,10 +46,6 @@ var tocScroll = {
 	{
 		if (!this._isHooked)
 		{
-			// dubeg: this fixes the case where you would reload
-			// an already scrolled-down viewport and the fixed TOC wouldn't appear.
-			//this.requestTick();
-
 			document.addEventListener("scroll", this._handlerOnScroll, false);
 			window.addEventListener("resize", this._handlerOnResize, false);
 			this._isHooked = true;
@@ -87,18 +79,19 @@ var tocScroll = {
 	updateElement: function()
 	{
 		var bounds = this._elementParent.getBoundingClientRect();
-		// 16px, because outline container has padding (1rem)
 		if (bounds.top <= this._topOffset)
 		{
-			this._element.style.visibility = "hidden";
-			this._fixedElement.style.visibility = "visible";
-			this._fixedElement.style.width = bounds.width + "px";
-			this._fixedElement.style.left = bounds.left + "px";
+			this._element.style.position = "fixed";
+			this._element.style.width = bounds.width + "px";
+			this._element.style.top = this._topOffset + "px";
+			this._element.style.left = bounds.left + "px";
 		}
 		else
 		{
-			this._element.style.visibility = "visible";
-			this._fixedElement.style.visibility = "hidden";
+			this._element.style.position = "";
+			this._element.style.width = "";
+			this._element.style.left = "";
+			this._element.style.top = "";
 		}
 		this._isTicking = false;
 	}

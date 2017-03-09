@@ -1,22 +1,34 @@
-// 1. Iterate through all sections in post.
-// 2. Get top and bottom position foreach section.
+// ==================================
+// TableOfContent viewport indicator
+//
+// Description:
+// this utility inserts and updates a line (represented by a div)
+// that should be located next to the TOC list.
+//
+// The line should only be next to the TOC items
+// related to the sections visible in the viewport.
+// ==================================
 var tocViewport = {
-
 	_isTicking : false,
 	_isHooked : false,
 	_sections : null,
-	_lists : null,
-	_indicators : null,
+	_tocList : null,
+	_indicator : null,
 	_items : null,
 
 	Init: function()
 	{
-		this._lists = document.getElementsByClassName("toc-list");
-		if (this._lists.length < 1)
-			return false;
-		this.insertIndicators(this._lists);
-		this._items = this.getItems(this._lists[0]);
+		let tocParent = document.getElementById("toc");
+		if (tocParent == null) return false;
+		this._tocList = tocParent.querySelector(".toc-list:not(.clone)");
+		if (this._tocList == null) return false;
+
+		this._indicator = this.insertIndicator(this._tocList);
+		this._items = this.getItems(this._tocList);
         this._sections = this.getSections();
+
+		// Update on page load, before any
+		// scrolling/resizing can occur.
 		this.onTick();
 		this._handlerOnScroll = this.onScroll.bind(this);
 		this._handlerOnResize = this.onResize.bind(this);
@@ -58,21 +70,50 @@ var tocViewport = {
 	},
 	onTick: function()
 	{
-		let sectionsInViewport = this.updateSectionsInViewport(this._sections);
-		this.updateViewportIndicators(sectionsInViewport);
+		let sections = this.getSectionsInViewport(this._sections);
+		this.updateViewportIndicator(sections);
 		// --------------------
 		this._isTicking = false;
 	},
-    // =================================================
+	// ----------------------------------------
+	// Get metadata on TOC items.
+	// Note:
+	// These are used to animate the TOC's 
+	// viewport indicator.
+	// ----------------------------------------
+	getItems: function(list)
+	{
+		let itemInfos = [];
+		let items = list.getElementsByTagName("li");
+		for(let i = 0; i < items.length; ++i)
+		{
+			let item = items[i];
+			let styles = window.getComputedStyle(item, null);
+			let lineHeight = styles.getPropertyValue("line-height");
+
+			let top = item.offsetTop;
+			let height = Number.parseInt(lineHeight.slice(0, -2));
+
+			itemInfos.push({
+				class: item.className,
+				height: height,
+				top: top
+			});
+		}
+		return itemInfos;
+	},
+	// ----------------------------------------
+	// Get list of metadata on sections of the document.
+	// Note:
+	// These are used to determine which sections
+	// are currently in the viewport.
+	// ----------------------------------------
     getSections: function()
     {
-        // Scan sections.
-        // Get top and bottom foreach section.
         let parent = document.getElementById("post");
         let children = parent.querySelectorAll(".post-content > *");
 
 		let sections = [];
-
         let child = null;
 		let childName = "";
 		let rect;
@@ -131,6 +172,10 @@ var tocViewport = {
 		}
 		return sections;
     },
+	// ----------------------------------------
+	// Get top & bottom of a element relative
+	// to the document.
+	// ----------------------------------------
 	getCoords: function(elem) 
 	{
 		let box = elem.getBoundingClientRect();
@@ -149,8 +194,11 @@ var tocViewport = {
 			bottom: Math.round(bottom) 
 		};
 	},
-	// =================================================
-	updateSectionsInViewport: function(sections)
+	// ----------------------------------------
+	// Get list of metadata on sections visible
+	// in the viewport.
+	// ----------------------------------------
+	getSectionsInViewport: function(sections)
 	{
 		let sectionsInViewport = [];
 		let viewportTop = window.scrollY;
@@ -180,11 +228,17 @@ var tocViewport = {
 				sectionsInViewport.push(section);
 				//console.log(section.index + " " + section.top + "-" + section.bottom + " " + section.sectionName);
 			}
-			//this.setItemClass(section, isInView);
+			//this.setClassOnItemsInView(section, isInView);
 		}
 		return sectionsInViewport;
 	},
-	setItemClass: function(section, isInView)
+	// ----------------------------------------
+	// Set a class on TOC items related to
+	// headings visible in the viewport.
+	// Note:
+	// Used to debug.
+	// ----------------------------------------
+	setClassOnItemsInView: function(section, isInView)
 	{
 		let className = "toc-item-" + section.index;
 		let elements = document.getElementsByClassName(className)
@@ -197,11 +251,16 @@ var tocViewport = {
 					elements[j].classList.remove("in-view");
 		}
 	},
-	// =================================================
-	updateViewportIndicators: function(sectionsInViewport)
+	// ----------------------------------------
+	// Update the TOC's viewport indicator.
+	// Note:
+	// The indicator is a line to the side of the list,
+	// that should be next to the TOC items in the viewport.
+	// ----------------------------------------
+	updateViewportIndicator: function(sectionsInViewport)
 	{
+		let indicator = this._indicator;
 		let items = this._items;
-		let list = this._lists[0];
 		let indicators = document.getElementsByClassName("toc-viewport");
 
 		// Get infos
@@ -214,46 +273,19 @@ var tocViewport = {
 
 		// Update indicators
 		// -----------------
-		for(let i = 0; i < indicators.length; ++i)
-		{
-			let indicator = indicators[i];
-			indicator.style.height = height + "px";
-			indicator.style.top = top + "px";
-		}
+		indicator.style.height = height + "px";
+		indicator.style.top = top + "px";
 	},
-	// =================================================
-	insertIndicators: function(lists)
+	// ----------------------------------------
+	// Insert the TOC's viewport indicator.
+	// Note:
+	// It will be inserted in the TOC container element.
+	// ----------------------------------------
+	insertIndicator: function(list)
 	{
 		let indicator = document.createElement("div");
 		indicator.className = "toc-viewport";
-
-		for( let i = 0; i < lists.length; ++i)
-		{
-			let list = lists[i];
-			let indicatorClone = indicator.cloneNode(true);
-			list.appendChild(indicatorClone);
-		}
-	},
-	// =================================================
-	getItems: function(list)
-	{
-		let itemInfos = [];
-		let items = list.getElementsByTagName("li");
-		for(let i = 0; i < items.length; ++i)
-		{
-			let item = items[i];
-			let styles = window.getComputedStyle(item, null);
-			let lineHeight = styles.getPropertyValue("line-height");
-
-			let top = item.offsetTop;
-			let height = Number.parseInt(lineHeight.slice(0, -2));
-
-			itemInfos.push({
-				class: item.className,
-				height: height,
-				top: top
-			});
-		}
-		return itemInfos;
+		list.appendChild(indicator);
+		return indicator;
 	}
 }
