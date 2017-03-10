@@ -6,13 +6,13 @@
 /* ------------------------------------------ */
 .post-header
 {
-	padding-bottom: 1rem;
+	padding-bottom: 1em;
 	border-bottom: 1px dotted rgb(200,200,200);	
 }
 .post-ispreview 
 .post-header
 {
-	padding-bottom: 0.5rem;
+	padding-bottom: 0.5em;
 	border-bottom: none;
 }
 /* ------------------------------------------ */
@@ -26,7 +26,7 @@
 /* ------------------------------------------ */
 .post-title
 {
-	font-size:2.8rem;
+	font-size:2.8em;
 	margin:0.2em 0;
 }
 .post-title a
@@ -42,7 +42,7 @@
 
 .post-ispreview .post-title
 {
-	font-size:2rem;
+	font-size:2em;
 	color:#2E61A2;
 	display:inline-block;
 }
@@ -51,8 +51,8 @@
 .post-tag
 {
 	display:inline-block;
-    font-size:0.8rem;
-	margin-bottom:0.4rem;
+    font-size:0.8em;
+	margin-bottom:0.4em;
 	padding:0.1em 0.5em;
 	margin-right:0.4em;
 
@@ -95,14 +95,14 @@
 
 .post-ispreview .post-date
 {
-	font-size:0.8rem;
+	font-size:0.8em;
 }
 /* ------------------------------------------ */
 .post-content
 {
-	font-size:1rem;
-	max-width: 45rem;
-	margin-top:2rem;
+	font-size:1em;
+	max-width: 45em;
+	margin-top:2em;
 	color:rgb(70,70,70);
 }
 /* ------------------------------------------ */
@@ -121,17 +121,17 @@
 .post-content h6
 {
 	position:relative;
-	margin-top:1.5rem;
-	margin-bottom:0.8rem;
+	margin-top:1.5em;
+	margin-bottom:0.8em;
 	color:rgb(30,30,50);
 }
 
-.post-content h1 { font-size:2.5rem; }
-.post-content h2 { font-size:2.2rem; }
-.post-content h3 { font-size:1.8rem; }
-.post-content h4 { font-size:1.5rem; }
-.post-content h5 { font-size:1.2rem; }
-.post-content h6 { font-size:1.0rem; }
+.post-content h1 { font-size:2.5em; }
+.post-content h2 { font-size:2.2em; }
+.post-content h3 { font-size:1.8em; }
+.post-content h4 { font-size:1.5em; }
+.post-content h5 { font-size:1.2em; }
+.post-content h6 { font-size:1.0em; }
 /* ------------------------------------------ */
 .post-content > p
 {
@@ -212,15 +212,15 @@
 {
 	overflow-x: scroll;
 	background-color: #f5f2f0;
-	padding:1rem;
+	padding:1em;
 }
 .post-content code
 {
 	font-family:"Consolas";
 	display:inline-block;
-	padding:0.2rem 0.4rem;
-	margin:0.0rem;
-	font-size:0.8rem;
+	padding:0.2em 0.4em;
+	margin:0.0em;
+	font-size:0.8em;
 	background-color: #f5f2f0;
 	color:#00978e;/* cyan:00978e oj:e66e33 green:309c40 taken from dev.moz*/
 	border-radius: 5px;
@@ -241,8 +241,8 @@
 .post-footer, 
 .post-footer *
 {
-    margin:0.4rem 0rem;
-    margin-right: 0.2rem;
+    margin:0.4em 0em;
+    margin-right: 0.2em;
 }
 
 .post-actions a
@@ -250,7 +250,7 @@
 	border:1px solid #2E61A2;
 	color:#2E61A2;
 	
-	font-size:0.7rem;
+	font-size:0.7em;
 
 	padding:0.2em 0.8em;
 	text-align: center;

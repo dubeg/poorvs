@@ -19,6 +19,10 @@
 }
 @media (max-width: 600px)
 {
+	body
+	{
+		font-size:0.8em;
+	}	
 	.post-full, .page-post-nav
 	{
 		width:90%;
