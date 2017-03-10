@@ -22,11 +22,8 @@ var tocBuilder = {
 
 	Init : function(sourceElementID, destinationElementID, headingSelectors, tocListClass)
 	{
-		if (headingSelectors !== null && typeof headingSelectors === "string")
-			this._headingSelectors = headingSelectors;
-
-		if (tocListClass !== null && typeof tocListClass === "string")
-			this._tocListClass = tocListClass;
+		this._setValue(this._headingSelectors, headingSelectors, "string");
+		this._setValue(this._tocListClass, tocListClass, "string");
 
 		this._sourceElement = document.getElementById(sourceElementID);
 		this._destinationElement = document.getElementById(destinationElementID);
@@ -75,9 +72,10 @@ var tocBuilder = {
 					currentParent = document.createElement(listTagName);
 					previousNode.appendChild(currentParent);
 				}
-				else if (previousNbr > headingNbr)
-				{
-					currentParent = currentParent.parentNode.parentNode;
+				else
+				{	
+					for(let i = headingNbr; i < previousNbr; ++i) 
+						currentParent = currentParent.parentNode.parentNode;
 				}
 				currentNode = this.BuildTOCItem(headingNode, i);
 				currentParent.appendChild(currentNode);
@@ -108,6 +106,12 @@ var tocBuilder = {
 		item.classList.add(className);
 		item.appendChild(anchor);
 		return item;
+	},
+	// =========================================
+	_setValue: function(member, parameter, type)
+	{
+		if (parameter !== null && typeof parameter === type)
+			member = parameter;
 	}
 };
 
