@@ -1,7 +1,7 @@
 /* ------------------------------------------ */
 .post
 {
-	padding-bottom:2em;
+	padding-bottom:1em;
 }
 /* ------------------------------------------ */
 .post-header
@@ -27,6 +27,7 @@
 .post-title
 {
 	font-size:2.8rem;
+	margin:0.2em 0;
 }
 .post-title a
 {
@@ -43,23 +44,58 @@
 {
 	font-size:2rem;
 	color:#2E61A2;
+	display:inline-block;
 }
 /* ------------------------------------------ */
-.post-date
+.post-date,
+.post-tag
 {
-	opacity:0.8;
+	display:inline-block;
     font-size:0.8rem;
 	margin-bottom:0.4rem;
+	padding:0.1em 0.5em;
+	margin-right:0.4em;
+
+	background-color:#FFDC5C;
+	background-color: rgba(46, 97, 162, 0.05);
+	border-radius:0.2em;
+	border: 2px solid transparent;
+
+	color: rgba(99, 122, 145, 0.6);
+	font-weight:bold;
 }
-.post-date :nth-child(2)
+.post-date-day
 {
-	margin-left:0.5em;
-    font-size:0.8em;
+	white-space:nowrap;
 }
+.post-tag
+{
+	font-weight:bold;
+	/*color:white;*/
+	color: rgba(46, 97, 162, 0.8);
+
+	/*background-color:rgba(46, 97, 162, 0.5);
+	text-shadow:0.1em 0.1em 0.2em rgba(46, 97, 162, 1);*/
+	
+	/*background-color: rgba(95, 207, 128, 0.8);*/
+	/*text-shadow:0.2em 0.2em 0.2em rgba(95, 207, 128, 1);*/
+	
+	/*background-color: rgba(99, 122, 145, 0.5);
+	text-shadow:0.1em 0.1em 0.1em #637a91;*/
+
+	/*background-color: rgba(91, 155, 213, 0.5);*/
+	/*text-shadow: 0.1em 0.1em 0.1em #5b9bd5;*/
+
+	/*background-color: rgba(0, 120, 215, 0.5);*/
+	/*text-shadow: 0.1em 0.1em 0.2em #0078d7;	*/
+
+	/*background-color:rgba(224, 116, 44, 0.5);
+	text-shadow: 0.1em 0.1em 0.4em #e0742c;	*/
+}
+
 .post-ispreview .post-date
 {
 	font-size:0.8rem;
-	color:rgb(130,130,130);
 }
 /* ------------------------------------------ */
 .post-content
@@ -207,16 +243,6 @@
 {
     margin:0.4rem 0rem;
     margin-right: 0.2rem;
-}
-
-.post-tags a
-{
-	display:inline-block;
-	padding:0.2em 0.4em;
-
-	font-size:0.8rem;
-	background-color:#FFDC5C;
-	color:rgb(70,70,70);
 }
 
 .post-actions a

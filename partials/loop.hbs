@@ -9,6 +9,23 @@
     AVAILABLE
     + pagination
     + [#post/post] : list of posts
+
+    Dates
+    ~~~~~
+    Year: YY, YYYY
+    Month: MMM, MMMMM (verbose)
+            M, Mo, MM (numeric)
+    Day: D, Do, DD (numeric)
+
+    Hours: H, HH (24); h, hh (12)
+    Minutes: m, mm
+    Seconds: s, ss
+
+    ISO: 
+        + E (day)
+        + W (week of year)
+        + GG (week year)
+        + z, zz
 --}}
 {{#foreach posts}}
 <article class="post post-ispreview {{post_class}}">
@@ -21,27 +38,17 @@
                 {{{title}}}
             </a>
         </h1>
-        {{!-- 
-            Dates
-            ~~~~~
-            Year: YY, YYYY
-            Month: MMM, MMMMM (verbose)
-                   M, Mo, MM (numeric)
-            Day: D, Do, DD (numeric)
-
-            Hours: H, HH (24); h, hh (12)
-            Minutes: m, mm
-            Seconds: s, ss
-
-            ISO: 
-                + E (day)
-                + W (week of year)
-                + GG (week year)
-                + z, zz
-        --}}
-        <time class="post-date" datetime="{{date published_at format="YYYY-MM-DD"}}">
-            Published ~ <span class="post-date-day">{{date published_at format="D MMM YYYY"}}</span>
-        </time>        
+        <div class="post-meta">
+            <time class="post-date" datetime="{{date published_at format="YYYY-MM-DD"}}">
+                published <span class="post-date-day">{{date published_at format="D MMM YYYY"}}</span>
+            </time>
+            <time class="post-date" datetime="{{date updated_at format="YYYY-MM-DD"}}">
+                updated <span class="post-date-day">{{date updated_at format="D MMM YYYY"}}</span>
+            </time>
+            {{#foreach tags}}
+            <a class="post-tag" href="{{url}}">#{{name}}</a>
+            {{/foreach}}
+        </div>
     </header>
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <!-- Post Content -->
@@ -55,11 +62,6 @@
     <!-- Post Footer -->
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <footer class="post-footer">
-        <section class="post-tags">
-            {{#foreach tags}}
-            <a href="{{url}}">#{{name}}</a>
-            {{/foreach}}
-        </section>
     </footer>
 </article>
 {{/foreach}}
