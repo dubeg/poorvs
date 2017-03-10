@@ -25,8 +25,6 @@ var tocViewport = {
 		if (this._tocList == null) return false;
 		this._indicator = this.insertIndicator(this._tocList);
 
-		this.updateMetadata();
-
 		// Update on page load, before any
 		// scrolling/resizing can occur.
 		this.requestTick();
@@ -92,11 +90,15 @@ var tocViewport = {
 		for(let i = 0; i < items.length; ++i)
 		{
 			let item = items[i];
-			let styles = window.getComputedStyle(item, null);
-			let lineHeight = styles.getPropertyValue("line-height");
+			let anchor = item.querySelector("a");
+			let anchorRect = anchor.getBoundingClientRect();
+			
+			//let styles = window.getComputedStyle(item, null);
+			//let lineHeight = styles.getPropertyValue("line-height");
 
 			let top = item.offsetTop;
-			let height = Number.parseInt(lineHeight.slice(0, -2));
+			//let height = Number.parseInt(lineHeight.slice(0, -2));
+			height = anchorRect.height;
 
 			itemInfos.push({
 				class: item.className,
@@ -294,6 +296,12 @@ var tocViewport = {
 		list.appendChild(indicator);
 		return indicator;
 	},
+	// ----------------------------------------
+	// Create metadata only if the tocList is displayed.
+	// Ex: it might not be displayed at all if the window's
+	// width is narrow and mediaQueries are hidding it. 
+	// In that case, it would have no offsetTop. 
+	// ----------------------------------------
 	updateMetadata: function()
 	{
 		if(this._tocList.clientHeight <= 0) return false;

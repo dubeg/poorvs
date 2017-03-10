@@ -57,10 +57,10 @@
 }
 
 li.toc-h2 { font-size:0.8em; margin-left: 1em;counter-increment: toc;}
-li.toc-h3 { font-size:0.7em; margin-left: 2em;counter-increment: toc;}
-li.toc-h4 { font-size:0.7em; margin-left: 3em;counter-increment: toc;}
-li.toc-h5 { font-size:0.7em; margin-left: 4em;counter-increment: toc;}
-li.toc-h6 { font-size:0.7em; margin-left: 5em;counter-increment: toc;}
+li.toc-h3 { font-size:0.8em; margin-left: 2em;counter-increment: toc;}
+li.toc-h4 { font-size:0.9em; margin-left: 3em;counter-increment: toc;}
+li.toc-h5 { font-size:0.9em; margin-left: 4em;counter-increment: toc;}
+li.toc-h6 { font-size:0.9em; margin-left: 5em;counter-increment: toc;}
 
 .toc-h2::before,
 .toc-h3::before,
