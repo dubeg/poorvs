@@ -17,7 +17,7 @@ var tocBuilder = {
 	_scrollY : null,
 	_activeHeading : null,
 	_activeClassName : null,
-	_tocListClass : "toc-container",
+	_tocListClass : "toc-list",
 	_tocListTag: "ol",
 
 	Init : function(sourceElementID, destinationElementID, headingSelectors, tocListClass)
