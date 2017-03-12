@@ -21,15 +21,40 @@
 .toc-viewport
 {
 	position: absolute;
-	width: 4px;
+	width: 8px;
 	height: 1em;
-	background-color: #FFDC5C;
-	background-color:rgba(46, 97, 162, 0.1);
+	
+	border:4px solid #d5dfec; 
+	/*rgba(46, 97, 162, 0.2);*/
+	/*#FFDC5C;*/
+	border-right:none;
+	/*border-right-color: transparent;*/
+
 	content: '';
 	left: -1.5em;
 	transition:
 		top 0.2s ease,
 		height 0.2s ease;
+
+	vertical-align: center;
+	overflow:visible;
+}
+.toc-viewport::before
+{
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%)
+				translateX(-100%);
+	
+	width:0px;
+	height: 0px;
+	background-color:transparent;
+	content: '';
+
+	border:0.5em solid #d5dfec;
+	border-left-color: transparent;
+	border-top-color: transparent;
+	border-bottom-color: transparent;
 }
 
 #toc .toc-h1 ol 
