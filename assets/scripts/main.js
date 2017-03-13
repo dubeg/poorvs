@@ -31,19 +31,18 @@ function mainInit()
 	let headingsContainerElementId = "post";
 	let tocContainerElementId = "toc";
 	let postNavElementId = "post-nav";
-	let headingSelectors = "h1,h2,h3,h4,h5,h6";
-	let tocListClassName = "toc-list";
-	let tocVisibleClassName = "visible";
+	let tocClass = "toc-container";
+	let tocVisibleClass = "visible";
 
-	if (tocBuilder.Init(headingsContainerElementId, tocContainerElementId, headingSelectors, tocListClassName))
+	if (tocBuilder.Init(headingsContainerElementId, tocContainerElementId, tocClass))
 	{
 		if(tocBuilder.InsertTOC()) {
 			// set toc visible
 			// set nav toc-visible to fix its margin if toc isnt displayed.
-			document.getElementById(postNavElementId).classList.add(tocVisibleClassName);
-			document.getElementById(tocContainerElementId).classList.add(tocVisibleClassName);
+			document.getElementById(postNavElementId).classList.add(tocVisibleClass);
+			document.getElementById(tocContainerElementId).classList.add(tocVisibleClass);
 
-			if (tocScroll.Init(tocListClassName))
+			if (tocScroll.Init(tocClass))
 				tocScroll.Start();
 
 			if (tocViewport.Init())

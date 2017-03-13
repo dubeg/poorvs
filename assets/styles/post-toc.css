@@ -2,21 +2,11 @@
    Table Of Content 
    (aka outline)
 ------------------------------------------ */
-.page-post-outline
-{
-	padding-top:1em;
-}
-
-.toc-list 
+.toc-container
 {
 	position: relative;
-	line-height: 1.2;
 }
 
-.toc-list > li
-{
-	margin:0;
-}
 /* Indicator */
 .toc-viewport
 {
@@ -55,12 +45,6 @@
 	border-bottom-color: transparent;
 }
 
-#toc .toc-h1 ol 
-{ 
-	counter-reset: toc; 
-	margin-top:0.5em;
-}
-
 .toc-h1,
 .toc-h2,
 .toc-h3,
@@ -72,18 +56,19 @@
 	margin-bottom:0.5em;
 	margin-top:   0.5em;
 }
-
-.toc-h1 { 
-	font-size:1.2em;  
-	margin-bottom: 0.5em;
-	padding-bottom: 0.5em;
+.toc-h1
+{
+	margin:0;
 }
 
-li.toc-h2 { font-size:0.8em; margin-left: 1em;counter-increment: toc;}
-li.toc-h3 { font-size:0.8em; margin-left: 2em;counter-increment: toc;}
-li.toc-h4 { font-size:0.9em; margin-left: 3em;counter-increment: toc;}
-li.toc-h5 { font-size:0.9em; margin-left: 4em;counter-increment: toc;}
-li.toc-h6 { font-size:0.9em; margin-left: 5em;counter-increment: toc;}
+.toc-list { margin-left:0em; }
+.toc-list ol {counter-reset:toc;}
+.toc-h1 { font-size:1.2em; }
+.toc-h2 { font-size:0.95em; margin-left: 1em;counter-increment: toc;}
+.toc-h3 { font-size:0.8em; margin-left: 2em;counter-increment: toc;}
+.toc-h4 { font-size:0.9em; margin-left: 3em;counter-increment: toc;}
+.toc-h5 { font-size:0.9em; margin-left: 4em;counter-increment: toc;}
+.toc-h6 { font-size:0.9em; margin-left: 5em;counter-increment: toc;}
 
 .toc-h2::before,
 .toc-h3::before,
@@ -96,16 +81,16 @@ li.toc-h6 { font-size:0.9em; margin-left: 5em;counter-increment: toc;}
 	content: counters(toc, ".") ". "; 
 	font-weight:bold;
 	opacity:0.9;
-	transition: all 0.2s ease;
+	transition: all 0.4s ease;
 }
 
-#toc a
+.toc-item a
 {
 	color:inherit;
 	transition:color 1s ease;
 }
 
-#toc a:active
+.toc-item a:active
 {
 	color:orange;
 	transition-duration: 0s;
@@ -119,5 +104,5 @@ li.toc-h6 { font-size:0.9em; margin-left: 5em;counter-increment: toc;}
 {
 	--background-color: rgba(46, 97, 162, 0.1);
 	border-radius:5px;
-	padding-right:0.2em;
+	--padding-right:0.2em;
 }

@@ -39,7 +39,10 @@ var tocScroll = {
 		cloneElement.className += " clone";
 		cloneElement.style.visibility = "hidden";
 		this._elementParent.appendChild(cloneElement);
-
+		
+		// Update on page load, before any
+		// scrolling/resizing can occur.
+		this.requestTick();
 		return true;
 	},
 	Start: function()

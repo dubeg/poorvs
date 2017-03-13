@@ -13,7 +13,7 @@ var tocViewport = {
 	_isTicking : false,
 	_isHooked : false,
 	_sections : null,
-	_tocList : null,
+	_toc : null,
 	_indicator : null,
 	_items : null,
 
@@ -21,9 +21,10 @@ var tocViewport = {
 	{
 		let tocParent = document.getElementById("toc");
 		if (tocParent == null) return false;
-		this._tocList = tocParent.querySelector(".toc-list:not(.clone)");
-		if (this._tocList == null) return false;
-		this._indicator = this.insertIndicator(this._tocList);
+
+		this._toc = tocParent.querySelector(".toc-container:not(.clone)");
+		if (this._toc == null) return false;
+		this._indicator = this.insertIndicator(this._toc);
 
 		// Update on page load, before any
 		// scrolling/resizing can occur.
@@ -60,7 +61,6 @@ var tocViewport = {
 	},
 	requestTick: function()
 	{
-		if (this._tocList.clientWidth <= 0) return;
 		if (this._isTicking == false)
 		{
 			this._isTicking = true;
@@ -83,10 +83,11 @@ var tocViewport = {
 	// These are used to animate the TOC's 
 	// viewport indicator.
 	// ----------------------------------------
-	getItems: function(list)
+	getItems: function()
 	{
+		let toc = this._toc;
 		let itemInfos = [];
-		let items = list.getElementsByTagName("li");
+		let items = toc.getElementsByClassName("toc-item");
 		for(let i = 0; i < items.length; ++i)
 		{
 			let item = items[i];
@@ -266,6 +267,7 @@ var tocViewport = {
 	updateViewportIndicator: function(sectionsInViewport)
 	{
 		let indicator = this._indicator;
+		let toc = this._toc;
 		let items = this._items;
 		let indicators = document.getElementsByClassName("toc-viewport");
 		
@@ -276,8 +278,6 @@ var tocViewport = {
 		
 		let top = firstItem.top;
 		let height = lastItem.top + lastItem.height - top;
-
-		//console.log(firstItem);
 
 		// Update indicators
 		// -----------------
@@ -304,9 +304,9 @@ var tocViewport = {
 	// ----------------------------------------
 	updateMetadata: function()
 	{
-		if(this._tocList.clientHeight <= 0) return false;
-		this._items = this.getItems(this._tocList);
-        this._sections = this.getSections();	
+		if(this._toc.clientHeight <= 0) return false;
+		this._items = this.getItems();
+        this._sections = this.getSections();
 		return this._metadataCalculated = true;
 	}
 }
