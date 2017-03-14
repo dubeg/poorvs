@@ -34,11 +34,12 @@
 	border-bottom: 2px solid rgba(46, 97, 162, 0.0);
 	transition: transform 0.2s,
 				border-color 0.1s;
+	outline:0;
 }
-.post-title:hover a,
-.post-title:focus a
+.post-title a:hover, 
+.post-title a:focus
 {
-	border-color: rgba(46, 97, 162, 0.2);
+	border-color: #abc0da;
 }
 
 .post-ispreview .post-title
