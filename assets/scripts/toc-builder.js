@@ -44,18 +44,19 @@ var tocBuilder = {
 	},
 	BuildTOC : function(headingsContainerElement)
 	{
-		let mainHeading = headingsContainerElement.querySelector("h1");
 		let subHeadings = headingsContainerElement.querySelectorAll(this._headingSelectors);
-		let heading;
-		let headingNbrStr;
-		let headingNbr;
-		let listTag = this._tocListTag;
-		let indexNbr = 0;
-
 		if(subHeadings.length >= this._minimumSections)
 		{
+			let listTag = this._tocListTag;
+			let indexNbr = 0;
+
+			// Create
+			// .. root
+			// .. title
+			// .. list 
+			let mainHeading = headingsContainerElement.querySelector("h1");
 			let rootNode = document.createElement("div");
-			let titleNode = this.BuildTOCItem(mainHeading, indexNbr, true);
+			let titleNode = this.BuildTOCItem(mainHeading, indexNbr, "div", "Introduction");
 			let listNode = document.createElement(listTag);
 
 			rootNode.setAttribute("class", "toc-container");
@@ -64,6 +65,9 @@ var tocBuilder = {
 			rootNode.appendChild(titleNode);
 			rootNode.appendChild(listNode);
 
+			let heading;
+			let headingNbrStr;
+			let headingNbr;
 			let currentParent = listNode;
 			let currentNode = null;
 			let previousNode = null;
@@ -97,18 +101,14 @@ var tocBuilder = {
 		}
 		return null;
 	},
-	BuildTOCItem : function(heading, index, isTitle = false)
+	BuildTOCItem : function(heading, index, itemTag = "li", label = "")
 	{
 		var headingID = heading.id;
-		var headingLabel = heading.textContent;
+		var headingLabel = label != "" ? label : heading.textContent;
 		var classPrefix = "toc-";
 		var className = classPrefix + heading.tagName.toLowerCase();
-
-		var itemTag = isTitle ? "div" : "li";
-		var anchorTag = "a";
-
 		var item = document.createElement(itemTag);
-		var anchor = document.createElement(anchorTag);
+		var anchor = document.createElement("a");
 
 		anchor.setAttribute("href", "#" + headingID.toLowerCase());
 		anchor.textContent = headingLabel;
