@@ -29,18 +29,16 @@
 	font-size:2.8em;
 	margin:0.2em 0;
 }
-.post-title
+.post-title a
 {
 	border-bottom: 2px solid rgba(46, 97, 162, 0.0);
 	transition: transform 0.2s,
 				border-color 0.1s;
 }
-.post-title:hover,
-.post-title:focus
+.post-title:hover a,
+.post-title:focus a
 {
 	border-color: rgba(46, 97, 162, 0.2);
-	/*transform: translateX(0.1em);*/
-	/*transform: scale(1.05);*/
 }
 
 .post-ispreview .post-title
