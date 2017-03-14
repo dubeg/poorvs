@@ -90,8 +90,9 @@ a {
 	color:inherit;
 }
 a:focus {
-	outline: 2px solid #c1c1c1;
-	outline: 2px solid rgba(51, 51, 51, 0.3);
+	--outline: 2px solid #c1c1c1;
+	--outline: 2px solid rgba(51, 51, 51, 0.3);
+	outline: 2px solid rgba(255,255,255,0.2);
 }
 
 a:hover,

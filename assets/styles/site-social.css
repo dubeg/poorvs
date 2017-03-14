@@ -1,0 +1,29 @@
+.site-header-social
+{
+    margin-left:auto;
+    display:flex;
+    justify-content:center;
+}
+
+.social-img
+{
+    display:absolute;
+    width:1em;
+    height:1em;
+    margin:0.5em;
+}
+
+.social-link
+{
+    display:inline-block;
+    background-color:rgba(255,255,255,0.0);
+    height:2em;
+    width:2em;
+    border-radius: 1em;
+    transition: all 0.2s ease-out;
+}
+
+.social-link:hover
+{
+    background-color:rgba(255,255,255,0.2);
+}

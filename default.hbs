@@ -41,27 +41,24 @@
     {{! ~~~~~~~~~~~~~~~~~~~~~~~~~~ }}
     <link rel="stylesheet" type="text/css" href="{{asset "styles/site-reset.css"}}" />
     <link rel="stylesheet" type="text/css" href="{{asset "styles/site-main.css"}}" />
-
     <link rel="stylesheet" type="text/css" href="{{asset "styles/site-header.css"}}" />
     <link rel="stylesheet" type="text/css" href="{{asset "styles/site-nav.css"}}" />
     <link rel="stylesheet" type="text/css" href="{{asset "styles/site-trail.css"}}" />
     <link rel="stylesheet" type="text/css" href="{{asset "styles/site-footer.css"}}" />
-
     <link rel="stylesheet" type="text/css" href="{{asset "styles/index.css"}}" />
     <link rel="stylesheet" type="text/css" href="{{asset "styles/index-pagination.css"}}" />
-
     <link rel="stylesheet" type="text/css" href="{{asset "styles/post.css"}}" />
     <link rel="stylesheet" type="text/css" href="{{asset "styles/post-page.css"}}" />
     <link rel="stylesheet" type="text/css" href="{{asset "styles/post-toc.css"}}" />
     <link rel="stylesheet" type="text/css" href="{{asset "styles/post-headings-number.css"}}" />
     <link rel="stylesheet" type="text/css" href="{{asset "styles/post-headings-shake.css"}}" />
-
+    <link rel="stylesheet" type="text/css" href="{{asset "styles/site-social.css"}}" />
     <link rel="stylesheet" type="text/css" href="{{asset "styles/site-media.css"}}" />
-    
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic%7COpen+Sans:700,400" />
     <link rel="stylesheet" type="text/css" href="{{asset "external/prism/prism.css"}}" />
     {{! ~~~~~~~~~~~~~~~~~~~~~~~~~~ }}
     {{ghost_head}}
+    {{! ~~~~~~~~~~~~~~~~~~~~~~~~~~ }}
 </head>
 <body class="{{body_class}}">
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -80,30 +77,37 @@
             <a href="{{@blog.url}}" class="site-header-title">
                 {{@blog.title}}
             </a>
-
             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
             <!-- Navigation -->
             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-            {{!-- Class: header-nav --}}
             {{navigation}}
-
             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
             <!-- Social -->
             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
             <aside class="site-header-social">
+                <a target="_blank" href="https://twitter.com/dubeg_">
+                    <div class="social-link">
+                        <img class="social-img" src="{{asset "images/twitter.svg"}}" />
+                    </div>
+                </a>
+                <a target="_blank" href="https://github.com/dubeg">
+                    <div class="social-link">
+                        <img class="social-img" src="{{asset "images/github.svg"}}" />
+                    </div>
+                </a>
             </aside>
-        </div>       
+    </div>
     </header>
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <!-- Trail -->
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-    <section id="site-trail" class="site-trail">
+    <div id="site-trail" class="site-trail">
         <div class="container site-trail-layout">
             <div id="site-trail-placeholder" class="site-trail-placeholder">
                 &nbsp;
             </div>
         </div>
-    </section>   
+    </div>   
 
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <!-- Site Content -->   
@@ -120,17 +124,17 @@
         <!-- ........... -->
         <!-- Copyright -->
         <!-- ........... -->
-        <section class="site-footer-copyright">
+        <div class="site-footer-copyright">
             <a href="{{@blog.url}}">{{@blog.title}}</a> 
             &copy; 
             {{date format="YYYY"}}
-        </section>
+        </div>
         <!-- ........... -->
         <!-- PoweredBy -->
         <!-- ........... -->
-        <section class="site-footer-ghost">
+        <div class="site-footer-ghost">
             Using <a href="https://ghost.org">Ghost</a>.
-        </section>
+        </div>
     </div>        
     </footer>
 

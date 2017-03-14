@@ -38,6 +38,10 @@
 		display:block;
 		text-align:center;
 	}
+	.site-header-social
+	{
+		margin-top:1em;
+	}
 	.navigation
 	{
 		border:none;
