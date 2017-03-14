@@ -4,7 +4,7 @@
 ------------------------------------------ */
 .navigation
 {
-	border-left:2px solid white;
+	border-left:2px solid rgba(255,255,255,0.5);
 	margin-left: 1rem;
 	padding-left:1rem;
 }
@@ -22,7 +22,8 @@
 
 	padding:0.2rem 0.6rem;
 	border-radius:0.2rem;
-	transition: all 0.2s ease;
+	transition: background-color 0.2s ease,
+				color 0.2s ease;
 }
 .navigation a:nth-child(even)
 {

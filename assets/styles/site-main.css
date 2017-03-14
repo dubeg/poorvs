@@ -42,3 +42,8 @@ hr, .ruler
 	padding-bottom: 2rem;
 }
 
+a:focus
+{
+	/*rgba(255,255,255,0.6);*/
+	outline: 2px solid #abc0da;
+}
