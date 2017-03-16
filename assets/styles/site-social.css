@@ -22,9 +22,12 @@
     position:relative;
     display:inline-block;
     background-color:rgba(255,255,255,0.0);
-    height:2rem;
-    width:2rem;
-    border-radius: 1rem;
+    --height:2rem;
+    --width:2rem;
+    --border-radius: 1rem;
+    height:1.8rem;
+    width: 1.8rem;
+    border-radius: 0.2rem;
     transition: all 0.2s ease-out;
 }
 
@@ -36,4 +39,5 @@
 .site-header-social a
 {
     display:flex;
+    margin-right: 0.0rem;
 }

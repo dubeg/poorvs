@@ -21,7 +21,7 @@
 {
 	body
 	{
-		font-size:0.8em;
+		font-size:0.95em;
 	}	
 	.post-full, .page-post-nav
 	{
@@ -29,30 +29,64 @@
 		margin-left:auto;
 		margin-right:auto;
 	}
+	.site-header-social a
+	{
+		margin-left: 0.4rem;
+	}
 }
 
 @media (max-width: 420px)
 {
+	.page
+	{
+		padding:1.5em 2em;
+		font-size:0.9em;
+	}
+	.page-index-header
+	{
+		margin-top:0.5em;
+		margin-bottom:0.5em;
+	}
+
+
 	.site-header-layout
 	{
-		display:block;
+		display:flex;
+		flex-wrap: wrap;
+		align-items:center;
+	}
+	.site-header-title
+	{
+		flex-basis:100%;
 		text-align:center;
 	}
 	.site-header-social
 	{
-		margin-top:1em;
+		margin:0.2em auto;
 	}
 	.navigation
 	{
+
 		border:none;
-		display:block;
-		margin:0;
+		margin:0.2em auto;
 		padding:0;
 	}
+
+
 	.page-post-body
 	{
 		width:100%;
 		margin-left:0;
 		margin-right:0;
-	}	
+	}
+	.page-post-nav
+	{
+		margin-left:0;
+		margin-right:0;
+	}
+	.post-meta
+	{
+		font-size:0.8em;
+	}
+
 }

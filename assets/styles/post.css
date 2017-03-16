@@ -49,6 +49,11 @@
 	display:inline-block;
 }
 /* ------------------------------------------ */
+.post-meta
+{
+	font-size:0.9em;
+}
+
 .post-date,
 .post-tag
 {
