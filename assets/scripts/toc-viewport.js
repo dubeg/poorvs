@@ -118,46 +118,41 @@ var tocViewport = {
     getSections: function()
     {
         let parent = document.getElementById("post");
+		let title = parent.querySelector(".post-header");
         let children = parent.querySelectorAll(".post-content > *");
-
 		let sections = [];
-        let child = null;
-		let childName = "";
-		let rect;
-		let top = 0;
-		let bottom = 0;
-		let index = 0;
-		let sectionName = "";
 
 		if(children.length > 0)
 		{
+			let child = null;
+			let rect;
+
+			let top = 0;
+			let bottom = 0;
+			let index = 0;
+			let name = "";
+			let i = 0;
+
 			// 1st case
-			child = children[0];
-			rect = this.getCoords(child);
+			name = "title";
+			index = 0;
+			rect = this.getCoords(title);
 			top = rect.top;
 			bottom = rect.bottom;
-			sectionName = "title";
-			index = 0;
 
 			// [2, N-1] case
-			for(let i = 1; i < children.length; ++i)
+			for(; i < children.length; ++i)
 			{
 				child = children[i];
-				childName = child.tagName.toUpperCase();
-				if (childName == "H1" || 
-					childName == "H2" ||
-					childName == "H3" ||
-					childName == "H4" ||
-					childName == "H5" ||
-					childName == "H6" ) 
+				if (this.isHeader(child.tagName)) 
 				{
 					// Push previous section on new heading.
-					sections.push({ sectionName: sectionName, top: top, bottom: bottom, index: index });
+					sections.push({ sectionName: name, top: top, bottom: bottom, index: index });
 
 					rect = this.getCoords(child);
 					top = rect.top;
 					bottom = rect.bottom;
-					sectionName = child.innerHTML;
+					name = child.innerHTML;
 					index += 1;
 				}
 				else 
@@ -170,15 +165,29 @@ var tocViewport = {
 			if(sections.length > 1)
 			{
 				sections.push({ 
-					sectionName: sectionName, 
+					sectionName: name, 
 					top: top, 
 					bottom: bottom, 
 					index: index
 				});
 			}
 		}
+
 		return sections;
     },
+	isHeader: function(tagName)
+	{
+		tagName = tagName.toUpperCase();
+		if (tagName == "H1" || 
+			tagName == "H2" ||
+			tagName == "H3" ||
+			tagName == "H4" ||
+			tagName == "H5" ||
+			tagName == "H6" )
+			return true
+		else
+			return false
+	},
 	// ----------------------------------------
 	// Get top & bottom of a element relative
 	// to the document.
