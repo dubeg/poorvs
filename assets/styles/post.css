@@ -1,5 +1,5 @@
 /* ------------------------------------------ */
-.post
+.post:not(.post-ispreview)
 {
 	padding-bottom:1em;
 }
@@ -26,12 +26,12 @@
 /* ------------------------------------------ */
 .post-title
 {
-	font-size:2.8em;
+	font-size:2.5em;
 	margin:0.2em 0;
 }
 .post-title a
 {
-	border-bottom: 0.08em solid transparent;
+	border-bottom: 0.15em solid transparent;
 	transition: transform 0.2s,
 				border-color 0.1s;
 	outline:0;
@@ -40,13 +40,6 @@
 .post-title a:focus
 {
 	border-color: #2E61A2;
-}
-
-.post-ispreview .post-title
-{
-	font-size:2em;
-	color:#2E61A2;
-	display:inline-block;
 }
 /* ------------------------------------------ */
 .post-meta
@@ -62,13 +55,14 @@
 	margin-bottom:0.4em;
 	padding:0.1em 0.5em;
 	margin-right:0.4em;
+	--text-transform: capitalize;
 
-	background-color:#FFDC5C;
-	background-color: rgba(46, 97, 162, 0.05);
+	--background-color:#FFDC5C;
+	--background-color: rgba(46, 97, 162, 0.05);
 	border-radius:0.2em;
 	border: 2px solid transparent;
 
-	color: rgba(99, 122, 145, 0.6);
+	color: rgba(99, 122, 145, 0.45);
 	font-weight:bold;
 }
 .post-date-day
@@ -98,11 +92,6 @@
 
 	/*background-color:rgba(224, 116, 44, 0.5);
 	text-shadow: 0.1em 0.1em 0.4em #e0742c;	*/
-}
-
-.post-ispreview .post-date
-{
-	font-size:0.8em;
 }
 /* ------------------------------------------ */
 .post-content

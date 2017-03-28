@@ -9,7 +9,7 @@
 .page-index-header
 {
 	display:flex;
-	align-items: baseline;
+	align-items: center;
 	flex-direction: row;
     margin-bottom:1.5rem;
 	color:rgb(60,60,60);
@@ -28,4 +28,27 @@
 {
 	visibility: visible;
 	opacity: 1;
+}
+
+.view-density
+{
+	margin-left:auto;
+	font-size:0.7em;
+	
+	flex-direction: row;
+	flex-wrap:wrap;
+}
+.view-density label
+{
+	display:block;
+	text-align:center;
+	margin:0.5em 0em;
+	font-weight:bold;
+}
+
+
+.posts
+{
+	margin-top:   1.5rem;
+	margin-bottom:1.5rem;
 }

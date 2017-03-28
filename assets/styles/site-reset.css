@@ -101,3 +101,9 @@ a:active {
 a img {
 	border: 0;
 }
+
+button
+{
+	font-family:inherit;
+	font-size:inherit;
+}
