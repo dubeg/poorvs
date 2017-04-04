@@ -16,6 +16,7 @@ var tocViewport = {
 	_toc : null,
 	_indicator : null,
 	_items : null,
+	_zoomLevel: -1,
 
 	Init: function()
 	{
@@ -28,6 +29,7 @@ var tocViewport = {
 
 		// Update on page load, before any
 		// scrolling/resizing can occur.
+		this._zoomLevel = 
 		this.requestTick();
 		this._handlerOnScroll = this.onScroll.bind(this);
 		this._handlerOnResize = this.onResize.bind(this);
@@ -57,6 +59,7 @@ var tocViewport = {
 	},
 	onResize : function()
 	{
+		this._metadataCalculated = false;
 		this.requestTick();
 	},
 	requestTick: function()
@@ -315,7 +318,7 @@ var tocViewport = {
 	{
 		if(this._toc.clientHeight <= 0) return false;
 		this._items = this.getItems();
-        this._sections = this.getSections();
+		this._sections = this.getSections();
 		return this._metadataCalculated = true;
 	}
 }
