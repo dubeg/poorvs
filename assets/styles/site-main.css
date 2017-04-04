@@ -26,7 +26,7 @@ hr, .ruler
 {
 	border:none;
 	height:2px;
-	background-color: rgb(220,220,245);
+	background-color: rgba(99, 122, 145, 0.15);
 }
 
 .container
