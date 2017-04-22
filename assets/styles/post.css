@@ -206,9 +206,32 @@
 
 .post-content pre
 {
-	overflow-x: scroll;
+	overflow-x:hidden;
+	border-radius:5px;
+	box-shadow:0px 0px 1em rgba(0,0,0, 0.5);
 	background-color: #f5f2f0;
-	padding:1em;
+
+	/* Trick to have scrolling shadow. */
+	/*background: linear-gradient(to left, rgba(0, 0, 0, 1.5) 0%, rgba(255,255,255,0));
+	background-repeat: no-repeat;
+	background-size: 0.5em 100%;
+	background-position:right;
+	background-attachment: scroll, scroll;*/
+	position:relative;
+	/* 
+	So this is weird. When display = block, there's extra space between code and pre at the bottom. 
+	Why is this? Where does it come from? Setting it to flex removes the space.
+	*/
+	display:flex; 
+}
+.post-content pre:before
+{
+	position:absolute;
+	top:0;bottom:0;
+	right:0;
+	content:"";
+	width:4em;
+	background: linear-gradient(to left, rgba(245,242,240, 1) 0%, rgba(255,255,255,0));
 }
 .post-content code
 {
@@ -218,8 +241,22 @@
 	margin:0.0em;
 	font-size:0.8em;
 	background-color: #f5f2f0;
-	color:#00978e;/* cyan:00978e oj:e66e33 green:309c40 taken from dev.moz*/
+	color:black;/* cyan:00978e oj:e66e33 green:309c40 taken from dev.moz*/
 	border-radius: 5px;
+}
+.post-content pre code 
+{
+	background-color:transparent;
+	overflow-x: auto;
+	width:100%;
+	padding:1.5em;
+	margin:0;
+}
+
+code::-webkit-scrollbar
+{
+	margin:1em;
+	width:1px;
 }
 
 .post-summary
