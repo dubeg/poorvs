@@ -232,6 +232,7 @@
 	content:"";
 	width:4em;
 	background: linear-gradient(to left, rgba(245,242,240, 1) 0%, rgba(255,255,255,0));
+	pointer-events:none;
 }
 .post-content code
 {
